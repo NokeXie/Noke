@@ -9,7 +9,9 @@ try:
     cur.execute(sql)
     results = cur.fetchall()
     for data in results:
-        print(data)
+        if data[3] == "解建国":
+            print("asdasdasdasd")
+
     cur.close()
     conn.close()
 except Exception :print("错误")
