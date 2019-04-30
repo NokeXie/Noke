@@ -40,4 +40,4 @@ while True:
                     print("*"*57)
 
     else:
-        print("格式输入错误！11111")
+        print("格式输入错误！")
