@@ -14,7 +14,8 @@ def timmer(func):
 
 @timmer
 def test1():
-    print("SDFSDFSDF")
+    time.sleep(3)
+    print("我运行了3秒种")
 
 
 test1()
