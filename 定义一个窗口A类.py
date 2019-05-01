@@ -8,7 +8,7 @@ class window(QWidget):
         self.steup_ui()
     def steup_ui(self):
         lable = QLabel(self)
-        lable.setText("你没1212121212121")
+        lable.setText("你妹的")
         lable.move(250,250)
 
 if __name__ == '__main__':
