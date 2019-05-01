@@ -92,6 +92,7 @@ def send_news():
             my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
             send_time()
         elif select_file() is None or select_file() =="":
+            print("明天无人值班")
             send_time()
     except:
 
