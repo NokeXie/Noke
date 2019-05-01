@@ -185,8 +185,12 @@ def mailsend():
             my_friend = bot.friends().search("胡祥军")[0]
             my_friend.send(u"这里是微信自动提醒：请留意今天FMD没有完成，下午16：20会再次尝试自动读取文件进行推送。")
             print("FMD文件不存在，下次邮件在%f秒后尝试自动推送" % Dtime16_20())
-            t = Timer(Dtime16_20(), mailsend)
-            t.start()
+            time.sleep(Dtime16_20())
+            if select_pdf() is not None:
+                mailsend()
+            else:
+                t = Timer(Dtime11(), mailsend)
+                t.start()
         elif select_pdf() is None and Dtime16_30() < 0 and dayOfWeek != 5 and dayOfWeek != 6:
             print("今天FMD文件发送失败，下次邮件在%f秒后尝试自动推送" % Dtime11())
             t = Timer(Dtime11(), mailsend)
