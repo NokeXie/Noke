@@ -216,7 +216,7 @@ def mailsend():
             part.add_header('Content-Disposition', 'attachment', filename="FMD.pdf")
             msg.attach(part)
 
-            s = smtplib.SMTP("smtp.troptical.com", timeout=30)  # 连接smtp邮件服务器,端口默认是25
+            s = smtplib.SMTP("s48.cn4e.com", timeout=30)  # 连接smtp邮件服务器,端口默认是25
             print("连接邮件服务器...")
             s.login(_user, _pwd)  # 登陆服务器
             print("登陆邮件服务器成功")
