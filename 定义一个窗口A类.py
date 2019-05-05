@@ -8,7 +8,10 @@ class window(QWidget):
         self.resize(600,600)
         self.setWindowTitle("fuck")
         self.steup_ui()
-
+    def timerEvent(self, *args, **kwargs): # 增加事件函数
+        x = self.width()
+        y = self.height()
+        self.resize(x+10,y+10)
     def steup_ui(self):
         lable = QLabel(self)
         lable.setText("你妹的")
