@@ -232,8 +232,10 @@ def mailsend():
             print("连接邮件服务器...")
             s.login(_user, _pwd)  # 登陆服务器
             print("登陆邮件服务器成功")
+            strat_time = time.time()
             s.sendmail(_user, _to, msg.as_string())  # 发送邮件
-            print("发送邮件成功")
+            stop_time = time.time()
+            print("发送邮件成功，耗时%s秒"%(stop_time - strat_time))
             s.close()
             print("下次邮件在%f秒后尝试自动推送" % Dtime11())
             t = Timer(Dtime11(), mailsend)
