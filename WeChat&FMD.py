@@ -71,7 +71,7 @@ def send_time():
 
     # 获取距离明天18点时间，单位为秒
     timer_start_time = (next_time - now_time).total_seconds()
-    print("微信值班提醒程序将在%f秒后自动执行" % timer_start_time)
+    print("微信值班提醒程序将在%d秒后自动执行" % timer_start_time)
     t = Timer(timer_start_time, send_news)
     t.start()
 
@@ -191,13 +191,13 @@ def mailsend():
             t = Timer(Dtime11(), mailsend)
             t.start()
         elif select_pdf() is not None and Dtime16_30() < 0 and dayOfWeek != 5 and dayOfWeek != 6:
-            print("今天FMD文件发送时间失效，下次邮件在%f秒后尝试自动推送" % Dtime11())
+            print("今天FMD文件发送时间失效，下次邮件在%d秒后尝试自动推送" % Dtime11())
             t = Timer(Dtime11(), mailsend)
             t.start()
         elif select_pdf() is None and Dtime16_30() > 0 and dayOfWeek != 5 and dayOfWeek != 6:
             my_friend = bot.friends().search("胡祥军")[0]
             my_friend.send(u"这里是微信自动提醒：请留意今天FMD没有完成，下午16：20会再次尝试自动读取文件进行推送。")
-            print("FMD文件不存在，下次邮件在%f秒后尝试自动推送" % Dtime16_20())
+            print("FMD文件不存在，下次邮件在%d秒后尝试自动推送" % Dtime16_20())
             time.sleep(Dtime16_20())
             if select_pdf() is not None:
                 mailsend()
@@ -205,7 +205,7 @@ def mailsend():
                 t = Timer(Dtime11(), mailsend)
                 t.start()
         elif select_pdf() is None and Dtime16_30() < 0 and dayOfWeek != 5 and dayOfWeek != 6:
-            print("今天FMD文件发送失败，下次邮件在%f秒后尝试自动推送" % Dtime11())
+            print("今天FMD文件发送失败，下次邮件在%d秒后尝试自动推送" % Dtime11())
             t = Timer(Dtime11(), mailsend)
             t.start()
         elif select_pdf()is not None and dayOfWeek != 5 and dayOfWeek != 6:
@@ -235,9 +235,9 @@ def mailsend():
             strat_time = time.time()
             s.sendmail(_user, _to, msg.as_string())  # 发送邮件
             stop_time = time.time()
-            print("发送邮件成功，耗时%s秒"%(stop_time - strat_time))
+            print("发送邮件成功，耗时%d秒"%(stop_time - strat_time))
             s.close()
-            print("下次邮件在%f秒后尝试自动推送" % Dtime11())
+            print("下次邮件在%d秒后尝试自动推送" % Dtime11())
             t = Timer(Dtime11(), mailsend)
             t.start()
     except:
