@@ -85,6 +85,7 @@ def send_news():
             bot.file_helper.send(contents[0])
             bot.file_helper.send(contents[1])
             bot.file_helper.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
+            print("值班提醒发送成功！！")
             send_time()
         elif select_file() != "" and select_file() is not None:
             if dayOfWeek == 2:
@@ -93,12 +94,14 @@ def send_news():
                 my_friend.send(contents[1])
                 my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
                 my_friend.send(u"微信自动提醒：请留意明天是周四，安全检查勿忘记！")
+                print("值班提醒发送成功！！")
                 send_time()
             else:
                 my_friend = bot.friends().search(select_file())[0]
                 my_friend.send(contents[0])
                 my_friend.send(contents[1])
                 my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
+                print("值班提醒发送成功！！")
                 send_time()
         elif select_file() is None or select_file() =="":
             print("明天无人值班")
