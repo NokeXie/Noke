@@ -11,7 +11,7 @@ lable.setText("获取天气")
 lable.adjustSize()
 lable.setStyleSheet("background-color:green;")
 def cao():
-    lable.setText(tianqi())
+    lable.setText(tianqi()) #tianqi()函数获取天气
     lable.adjustSize()
     lable.setStyleSheet("background-color:green;")
     print(lable.text())
