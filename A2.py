@@ -1,6 +1,5 @@
 import sys
 from PyQt5.Qt import *
-from Focoserver import *
 
 app = QApplication(sys.argv)
 
@@ -30,7 +29,6 @@ for i in range(0, widget_count):
     widget_y = i // column_count * widget_height
     w.move(widget_x, widget_y)
     w.setStyleSheet("background-color: green;border: 1px solid yellow;")
-    w.setText(foco())
     w.show()
 
 sys.exit(app.exec_())
