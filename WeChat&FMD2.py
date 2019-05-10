@@ -43,7 +43,7 @@ def select_file():
         a_date = datetime.date(year, month, day)  # 解析为时间对象
         if tomorrow() == a_date:  # 判断明天的日期和表一的第二列的那个时间日期相等
             k1 = table.row_values(i)[3:4]  # 获取表一的第三列的数值（列表形式）
-            k2 = table.row_values(i)[4,5]
+            k2 = table.row_values(i)[4:5]
             return k1[0],k2[0]  # 返回列表的第一个值 也就是姓名字符串
 
 
@@ -104,7 +104,6 @@ def send_news():
                 my_friend.send(contents[0])
                 my_friend.send(contents[1])
                 my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
-                my_friend.send(u"微信自动提醒：请留意明天是周四，安全检查勿忘记！")
                 print("天腾人员值班提醒发送成功！！明天值班人员为%s" % my_friend)
                 send_time()
             else:
