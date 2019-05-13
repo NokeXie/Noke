@@ -46,7 +46,6 @@ def select_file():
             k2 = table.row_values(i)[4:5]
             return k1[0],k2[0]  # 返回列表的第一个值 也就是姓名字符串
 
-
 def get_news():  # 获取金山词霸每日一句，英文和翻译
     url = "http://open.iciba.com/dsapi/"
     r = requests.get(url)
@@ -81,70 +80,70 @@ def send_news():
         dayOfWeek = datetime.datetime.now().weekday()
         print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
         contents = get_news()
-        if select_file()[0][0] == "解建国" and dayOfWeek != 2:
+        if select_file()[0] == "解建国" and dayOfWeek != 2:
             bot.file_helper.send(contents[0])
             bot.file_helper.send(contents[1])
             bot.file_helper.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
             print("天润人员值班提醒发送成功！！明天值班人员为解建国")
-            my_friend = bot.friends().search(select_file()[1][0])[0]
+            my_friend = bot.friends().search(select_file()[1])[0]
             my_friend.send(contents[0])
             my_friend.send(contents[1])
             my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
             print("天腾值班提醒发送成功！！明天值班人员为%s" % my_friend)
             send_time()
-        elif select_file()[0][0] == "解建国" and dayOfWeek == 2:
+        elif select_file()[0] == "解建国" and dayOfWeek == 2:
             bot.file_helper.send(contents[0])
             bot.file_helper.send(contents[1])
             bot.file_helper.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
             bot.file_helper.send(u"微信自动提醒：请留意明天是周四，安全检查勿忘记！")
             print("天润人员值班提醒发送成功！！明天值班人员为解建国")
-            my_friend = bot.friends().search(select_file()[1][0])[0]
+            my_friend = bot.friends().search(select_file()[1])[0]
             my_friend.send(contents[0])
             my_friend.send(contents[1])
             my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
             print("天腾值班提醒发送成功！！明天值班人员为%s" % my_friend)
             send_time()
 
-        elif select_file()[0][0] != "" and select_file()[1][0] != "" and select_file() is not None:
+        elif select_file()[0] != "" and select_file()[1] != "" and select_file() is not None:
             if dayOfWeek == 2:
-                my_friend = bot.friends().search(select_file()[0][0])[0]
+                my_friend = bot.friends().search(select_file()[0])[0]
                 my_friend.send(contents[0])
                 my_friend.send(contents[1])
                 my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
                 my_friend.send(u"微信自动提醒：请留意明天是周四，安全检查勿忘记！")
                 print("天润人员值班提醒发送成功！！明天值班人员为%s" % my_friend)
-                my_friend = bot.friends().search(select_file()[1][0])[0]
+                my_friend = bot.friends().search(select_file()[1])[0]
                 my_friend.send(contents[0])
                 my_friend.send(contents[1])
                 my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
                 print("天腾人员值班提醒发送成功！！明天值班人员为%s" % my_friend)
                 send_time()
             else:
-                my_friend = bot.friends().search(select_file()[0][0])[0]
+                my_friend = bot.friends().search(select_file()[0])[0]
                 my_friend.send(contents[0])
                 my_friend.send(contents[1])
                 my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
                 print("天润人员值班提醒发送成功！！明天值班人员为%s" % my_friend)
-                my_friend = bot.friends().search(select_file()[1][0])[0]
+                my_friend = bot.friends().search(select_file()[1])[0]
                 my_friend.send(contents[0])
                 my_friend.send(contents[1])
                 my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
                 print("天腾人员值班提醒发送成功！！明天值班人员为%s" % my_friend)
                 send_time()
-        elif select_file()is None or (select_file()[0][0] =="" and select_file()[1][0] ==""):
+        elif select_file()is None or (select_file()[0] =="" and select_file()[1] ==""):
             print("明天无人值班")
             send_time()
-        elif select_file() is not None and select_file()[0][0] !="" and select_file()[1][0] =="":
+        elif select_file() is not None and select_file()[0] !="" and select_file()[1] =="":
             print("明天天腾无人值班")
-            my_friend = bot.friends().search(select_file()[0][0])[0]
+            my_friend = bot.friends().search(select_file()[0])[0]
             my_friend.send(contents[0])
             my_friend.send(contents[1])
             my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
             print("天润人员值班提醒发送成功！！明天值班人员为%s" % my_friend)
             send_time()
-        elif select_file() is not None and select_file()[0][0] =="" and select_file()[1][0] !="":
+        elif select_file() is not None and select_file()[0] =="" and select_file()[1] !="":
             print("明天天润无人值班")
-            my_friend = bot.friends().search(select_file()[1][0])[0]
+            my_friend = bot.friends().search(select_file()[1])[0]
             my_friend.send(contents[0])
             my_friend.send(contents[1])
             my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
