@@ -81,7 +81,7 @@ def send_news():
         dayOfWeek = datetime.datetime.now().weekday()
         print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
         contents = get_news()
-        if select_file()[0] == "解建国":
+        if select_file()[0][0] == "解建国" and dayOfWeek != 2:
             bot.file_helper.send(contents[0])
             bot.file_helper.send(contents[1])
             bot.file_helper.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
@@ -92,7 +92,20 @@ def send_news():
             my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
             print("天腾值班提醒发送成功！！明天值班人员为%s" % my_friend)
             send_time()
-        elif select_file()[0] != "" and select_file()[1] != "" and select_file() is not None:
+        elif select_file()[0][0] == "解建国" and dayOfWeek == 2:
+            bot.file_helper.send(contents[0])
+            bot.file_helper.send(contents[1])
+            bot.file_helper.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
+            bot.file_helper.send(u"微信自动提醒：请留意明天是周四，安全检查勿忘记！")
+            print("天润人员值班提醒发送成功！！明天值班人员为解建国")
+            my_friend = bot.friends().search(select_file()[1][0])[0]
+            my_friend.send(contents[0])
+            my_friend.send(contents[1])
+            my_friend.send(u"微信自动提醒：请留意明天值班，祝您度过美好的一天！！")
+            print("天腾值班提醒发送成功！！明天值班人员为%s" % my_friend)
+            send_time()
+
+        elif select_file()[0][0] != "" and select_file()[1][0] != "" and select_file() is not None:
             if dayOfWeek == 2:
                 my_friend = bot.friends().search(select_file()[0][0])[0]
                 my_friend.send(contents[0])
