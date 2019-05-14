@@ -209,14 +209,14 @@ def Dtime16_20():  # 获取距离今天16：20分点时间，单位为秒
     return timer_start_time
 
 
-def Dtime11():  # 获取距离明天11点的时间秒数
+def Dtime11():  # 获取距离明天14点的时间秒数
     now_time = datetime.datetime.now()
     next_time = now_time + datetime.timedelta(days=+1)
     next_year = next_time.date().year
     next_month = next_time.date().month
     next_day = next_time.date().day
     next_time = datetime.datetime.strptime(
-        str(next_year) + "-" + str(next_month) + "-" + str(next_day) + " 11:00:00", "%Y-%m-%d %H:%M:%S")
+        str(next_year) + "-" + str(next_month) + "-" + str(next_day) + " 14:00:00", "%Y-%m-%d %H:%M:%S")
     timer_start_time = (next_time - now_time).total_seconds()
     return timer_start_time
 
