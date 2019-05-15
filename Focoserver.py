@@ -6,7 +6,7 @@ path=path1+'\FOCOSERVER.dat'
 data = pd.read_csv(path,sep='\s+')
 # data2 = data[data["Job"]=="1"+"832741"]
 # # print(data2.values[1][0])
-print(data)
+#print(data)
 #skiprows[a,b,c,d] abcd行不读取//// sep=‘\s+’识别切割的字符（空格，或多个空格），默认为 “，”。
 
 while True:
