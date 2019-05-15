@@ -37,7 +37,7 @@ while True:
                     print("NRCyl： %f" % (da[41]))
                     print("NRAxis：%f" % (da[44]))
                     print("*"*57)
-            if len(data3.index) > 0:
+            elif len(data3.index) > 0:
                 for i in range(0, len(data3.index)):
                     # k = int(data.iloc[i][0:1]) # 第一种取值方式
                     da = data3.values[i]  # 第二种取值方式  推荐
@@ -54,7 +54,7 @@ while True:
                     print("NRCyl： %f" % (da[41]))
                     print("NRAxis：%f" % (da[44]))
                     print("*" * 57)
-            if len(data4.index) > 0:
+            elif len(data4.index) > 0:
                 for i in range(0, len(data4.index)):
                     # k = int(data.iloc[i][0:1]) # 第一种取值方式
                     da = data4.values[i]  # 第二种取值方式  推荐
