@@ -3,10 +3,10 @@ print("正在加载数据库数据.....")
 import pandas as pd
 path1= r'\\192.168.10.18\results'
 path=path1+'\FOCOSERVER.dat'
-data = pd.read_csv(path,low_memory=False,sep='\s+')
-# data2 = data[data["Job"]=="1"+"832741"]
-# # print(data2.values[1][0])
-#print(data)
+data = pd.read_csv(path,sep='\s+')
+#data2 = data[data["Job"]==800181]
+#print(data2.values[1][0])
+#print(data2)
 #skiprows[a,b,c,d] abcd行不读取//// sep=‘\s+’识别切割的字符（空格，或多个空格），默认为 “，”。
 
 while True:
