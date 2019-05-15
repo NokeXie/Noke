@@ -3,7 +3,9 @@ print("正在加载数据库数据.....")
 import pandas as pd
 path1= r'\\192.168.10.18\results'
 path=path1+'\FOCOSERVER.dat'
-data = pd.read_csv(path,header=None,skiprows=[0],sep='\s+')
+data = pd.read_csv(path,sep='\s+')
+# data2 = data[data["Job"]==800181]
+# print(data2.values[1][0])
 #print(data)
 #skiprows[a,b,c,d] abcd行不读取//// sep=‘\s+’识别切割的字符（空格，或多个空格），默认为 “，”。
 
@@ -12,18 +14,13 @@ while True:
     list = []
     if k1.isdigit():
         k2 = int(k1)
-        for i in range(0,len(data)):
-            k = int(data.iloc[i][0:1])  # 获取dat第i行的 第一列的数值
-            list.append(k)
-        list2 =[i for i,x in enumerate(list) if x ==k2]   # i,x代表序 号：值  i for i,x 提取其中的序号
-        #print(list2)
-        print("查询中请稍后....")
-        if k2 not in list and (k2+1000000) not in list:
+        data2 = data[data["Job"] == k2]
+        if len(data2.index)==0:
             print("没有查询到该单号！")
-        elif k2 in list or (k2+1000000) in list:
-            for i in list2:
+        else:
+            for i in range(0,len(data2.index)):
                 #k = int(data.iloc[i][0:1]) # 第一种取值方式
-                da = data.values[i] #第二种取值方式  推荐
+                da = data2.values[i] #第二种取值方式  推荐
                 if (da[0] == k2 or da[0] == k2+1000000) and da[6]!=0:
                     print("工单号：%d(%s)    时间：%s %s   代码:%s"%(da[0],da[1],da[2],da[3],da[5]))
                     print("SPH： %f (%f)" % (da[8],da[9]))
