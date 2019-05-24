@@ -248,6 +248,7 @@ def mailsend():
                 mailsend()
             else:
                 t = Timer(Dtime11(), mailsend)
+                print("今天FMD文件发送时间失效，下次邮件在%d秒后尝试自动推送" % Dtime11())
                 t.start()
         elif len(select_pdf()) ==0 and Dtime16_30() < 0 and dayOfWeek != 5 and dayOfWeek != 6:
             print("今天FMD文件发送失败，下次邮件在%d秒后尝试自动推送" % Dtime11())
