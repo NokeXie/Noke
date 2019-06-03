@@ -164,6 +164,7 @@ def select_pdf():  #选择00开头的pdf文件
     rr = re.compile("^00\w*\.%s$" % type, re.I)  # 正则表达式匹配.pdf结尾的文件
     today = datetime.date.today()  # 获取今天的时间
     filelist = []  # 新建一个列表
+    list_file = []
     for i in range(0, len(list)):
         path = os.path.join(base_dir,list[i])  # 拼接路径下的文件
         if os.path.isfile(path):  # 检查是否为文件
@@ -182,7 +183,8 @@ def select_pdf():  #选择00开头的pdf文件
             date3 = datetime.date(year, month, day)   # 表示日期，常用的属性有：year, month和day
             if today == date3:
                 path = os.path.join(base_dir, filelist[i])
-                return path
+                list_file.append(path)
+    return list_file
 
 
 def Dtime16_30():  # 获取距离今天16：30分点时间，单位为秒
@@ -233,25 +235,26 @@ def mailsend():
             print("今天周日，下次邮件在下周一尝试自动推送" )
             t = Timer(Dtime11(), mailsend)
             t.start()
-        elif select_pdf() is not None and Dtime16_30() < 0 and dayOfWeek != 5 and dayOfWeek != 6:
+        elif len(select_pdf()) > 0 and Dtime16_30() < 0 and dayOfWeek != 5 and dayOfWeek != 6:
             print("今天FMD文件发送时间失效，下次邮件在%d秒后尝试自动推送" % Dtime11())
             t = Timer(Dtime11(), mailsend)
             t.start()
-        elif select_pdf() is None and Dtime16_30() > 0 and dayOfWeek != 5 and dayOfWeek != 6:
+        elif len(select_pdf()) ==0 and Dtime16_30() > 0 and dayOfWeek != 5 and dayOfWeek != 6:
             my_friend = bot.friends().search("胡祥军")[0]
             my_friend.send(u"这里是微信自动提醒：请留意今天FMD没有完成，下午16：20会再次尝试自动读取文件进行推送。")
             print("FMD文件不存在，下次邮件在%d秒后尝试自动推送" % Dtime16_20())
             time.sleep(Dtime16_20())
-            if select_pdf() is not None:
+            if len(select_pdf()) >0:
                 mailsend()
             else:
                 t = Timer(Dtime11(), mailsend)
+                print("今天FMD文件发送时间失效，下次邮件在%d秒后尝试自动推送" % Dtime11())
                 t.start()
-        elif select_pdf() is None and Dtime16_30() < 0 and dayOfWeek != 5 and dayOfWeek != 6:
+        elif len(select_pdf()) ==0 and Dtime16_30() < 0 and dayOfWeek != 5 and dayOfWeek != 6:
             print("今天FMD文件发送失败，下次邮件在%d秒后尝试自动推送" % Dtime11())
             t = Timer(Dtime11(), mailsend)
             t.start()
-        elif select_pdf()is not None and dayOfWeek != 5 and dayOfWeek != 6:
+        elif len(select_pdf())>0 and dayOfWeek != 5 and dayOfWeek != 6:
             _user = "it@troptical.com"
             _pwd = "241007s"
             _to = "fmd-franchise@optovision.de"
@@ -265,13 +268,12 @@ def mailsend():
             # ---这是文字部分---
             part = MIMEText(" This is the automatic push of mail. Please do not reply.")
             msg.attach(part)
-
-            # pdf类型附件
-            part = MIMEApplication(open(select_pdf(), 'rb').read())
-            part.add_header('Content-Disposition', 'attachment', filename="FMD.pdf")
-            msg.attach(part)
-
-            s = smtplib.SMTP("s48.cn4e.com", timeout=30)  # 连接smtp邮件服务器,端口默认是25
+            for i in range(0, len(select_pdf())):
+                # pdf类型附件
+                part = MIMEApplication(open(select_pdf()[i], 'rb').read())
+                msg.attach(part)
+                part.add_header('Content-Disposition', 'attachment', filename="FMD_" + str(i + 1) + ".pdf")
+            s = smtplib.SMTP("s48.cn4e.com", timeout=120)  # 连接smtp邮件服务器,端口默认是25
             print("连接邮件服务器...")
             s.login(_user, _pwd)  # 登陆服务器
             print("登陆邮件服务器成功")
