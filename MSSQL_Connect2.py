@@ -47,7 +47,7 @@ class MSSQL:
 
 def main():
     ms = MSSQL(host="192.168.10.77", user="sa", pwd="sa", db="STCard_Enp")
-    resList = ms.ExecQuery("select * from ST_Person where Person_Name <>'外来' and Is_Del <>1 and (Dept_ID =9 or Dept_ID =3 or Dept_ID =7 or Dept_ID =8,Dept_ID =2) and Card_No <>''")
+    resList = ms.ExecQuery("select * from ST_Person where Person_Name <>'外来' and Is_Del <>1 and (Dept_ID =9 or Dept_ID =3 or Dept_ID =7 or Dept_ID =8 or Dept_ID =2) and Card_No <>''")
     k = 0
     path = r"D:\非在职人员名单.xls"
     workbook = xlwt.Workbook()  # 新建一个工作簿
