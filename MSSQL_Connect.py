@@ -47,7 +47,6 @@ def main():
             print(resList[i][4])
             sheet.write(k, 0, resList[i][4])  # 像表格中写入数据（对应的行和列）
             k=k+1
-            print(k)
             workbook.save(path)  # 保存工作簿
     print("xls格式表格写入数据成功！")
 
