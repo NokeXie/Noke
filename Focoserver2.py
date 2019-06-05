@@ -11,7 +11,6 @@ data = pd.read_csv(path,sep='\s+')
 
 while True:
     k1 = input("请输入你要查询的单号：")
-    list = []
     if k1.isdigit():
         k2 = int(k1)
         data2 = data[data["Job"] == k2]
