@@ -45,7 +45,9 @@ def main():
     for i in range(0,len(resList)):
         if resList[i][4] not in renyuan():
             x=resList[i][4]
-            # ms.ExecSql('update ST_person set is_del=1 where person_name =%s',x)  #需要清理非在职人员清把这个语句去掉注释
+            # ms.ExecSql("update ST_person set is_del=1 where person_name =%s and Is_Del <>1 and Dept_ID <>9 and Dept_ID <>3 "
+            #                      "and Dept_ID <>7 and Dept_ID <>8 and Card_No <>''",x)
+            #清理姓名时去掉注销
             print(resList[i][4])
             sheet.write(k, 0, resList[i][4])  # 像表格中写入数据（对应的行和列）
             k=k+1
