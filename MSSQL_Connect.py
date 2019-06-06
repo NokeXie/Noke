@@ -20,9 +20,9 @@ class MSSQL:
         else:
             return cur
 
-    def ExecSql(self,sql):
+    def ExecSql(self,sql,para):#带变量的sql语句
         cur=self.GetConnect()
-        cur.execute(sql)
+        cur.execute(sql,para)
         self.connect.commit()
         self.connect.close()
 
@@ -39,11 +39,13 @@ def main():
     resList = ms.ExecQuery("select *from ST_Person where Person_Name <>'外来' and Is_Del <>1 and Dept_ID <>9 and Dept_ID <>3 "
                      "and Dept_ID <>7 and Dept_ID <>8 and Card_No <>''")
     k = 0
-    path = r"\\192.168.10.56\天润文件\03-财务部\17-消费系统清理人员\非在职人员名单.xls"
+    path = r"D:\非在职人员名单.xls"
     workbook = xlwt.Workbook()  # 新建一个工作簿
     sheet = workbook.add_sheet("非在职人员名单")  # 在工作簿中新建一个表格
     for i in range(0,len(resList)):
         if resList[i][4] not in renyuan():
+            x=resList[i][4]
+            # ms.ExecSql('update ST_person set is_del=1 where person_name =%s',x)  #需要清理非在职人员清把这个语句去掉注释
             print(resList[i][4])
             sheet.write(k, 0, resList[i][4])  # 像表格中写入数据（对应的行和列）
             k=k+1
