@@ -1,4 +1,4 @@
-#md5进行数据的加密
+#md5进行数据的加密.。
 import hashlib
 #md5加密
 def encryption_md5(name):
