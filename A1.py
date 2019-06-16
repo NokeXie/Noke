@@ -30,3 +30,4 @@ btn1.setText("清空")
 btn1.clicked.connect(cao1)
 win.show()
 sys.exit(app.exec_())
+111
