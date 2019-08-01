@@ -273,7 +273,7 @@ def mailsend():
                 part = MIMEApplication(open(select_pdf()[i], 'rb').read())
                 msg.attach(part)
                 part.add_header('Content-Disposition', 'attachment', filename="FMD_" + str(i + 1) + ".pdf")
-            s = smtplib.SMTP("s48.cn4e.com", timeout=120)  # 连接smtp邮件服务器,端口默认是25
+            s = smtplib.SMTP("s48.cn4e.com", timeout=300)  # 连接smtp邮件服务器,端口默认是25
             print("连接邮件服务器...")
             s.login(_user, _pwd)  # 登陆服务器
             print("登陆邮件服务器成功")
