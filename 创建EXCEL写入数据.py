@@ -12,7 +12,7 @@ def write_excel():
     excelData = "dsadasd"
     # 定义循环下标
 
-    data_sheet.write(0,0,excelData)
+    data_sheet.write(0,1,excelData)
     # sys.exit();
     # 保存文件
     workbook.save('D:\demo.xls')
